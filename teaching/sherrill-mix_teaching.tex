@@ -1,0 +1,61 @@
+\documentclass[]{article}
+%\author{Scott Sherrill-Mix}
+\usepackage{enumitem}
+\usepackage[pdftitle={Scott Sherrill-Mix teaching statement},pdfauthor={Scott Sherrill-Mix},hidelinks]{hyperref} 
+\date{\today}
+\usepackage[top=.8in,bottom=.8in,left=1.1in,right=1.1in]{geometry}
+\usepackage{palatino}
+\usepackage{microtype}
+\renewcommand\thesection{}
+\renewcommand{\thesubsection}{}
+%http://tex.stackexchange.com/questions/80113/hide-section-numbers-but-keep-numbering
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\def\@subseccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\subsectionignore\@gobbletwo
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+\usepackage[]{titlesec}
+\titleformat*{\section}{\sc\large}
+\titleformat*{\subsection}{\sc}
+\titleformat*{\subsubsection}{\sc}
+
+\usepackage{titling}
+\renewcommand{\maketitlehooka}{\sf}
+
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{lastpage}
+\definecolor{footerColor}{gray}{.7}
+\fancyfoot[C]{
+	 \color{footerColor} \{Scott Sherrill-Mix teaching statement -- \thepage~of~\pageref{LastPage}\}  %\adforn{46}
+} 
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+\pagestyle{fancy}
+
+\usepackage{indentfirst}
+%\titlespacing*{\subsection}{0pt}{.3em}{.0em}
+\titlespacing*{\section}{0pt}{.9em}{.1em}
+
+
+\begin{document}
+%\maketitle
+
+\begin{center}
+\fontsize{19}{21}\textsc{Teaching statement}\\
+\vspace{.4em}
+\fontsize{14}{17}\textsc{Scott Sherrill-Mix}
+\end{center}
+
+
+ During my graduate training, I served as a teaching assistant for several biology and programming classes. I found the most enjoyable aspects of teaching were guiding students through interactive labs, both computational and biological. Recently, I have continued this hands-on approach by mentoring several colleagues from never having programmed into competent R coders. I have also organized several student ``hackathons'' which combined a fun coding competition with experience in collaboration and programming.
+ 
+ Across these experiences, I have seen that lessons on programming and bioinformatics are not well retained if the student does not have both an applied problem to solve and a mental model of the computation.  For researchers interested in developing these skill, one course I would like to develop would focus on self implementation of common bioinformatic algorithms. Such a foundational course would demystify bioinformatics while offering the opportunity for teaching best practices such as documentation, software testing, source control and reproducible research. Adding small competitive programming challenges to the class might help to make learning to program fun and increase retention.
+
+
+
+
+\end{document}
