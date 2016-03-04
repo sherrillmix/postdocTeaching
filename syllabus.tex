@@ -4,11 +4,12 @@
 \usepackage{microtype}
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
 \usepackage{lastpage}
+\usepackage{longtable}
 \pagestyle{fancy} % options: empty , plain , fancy
 \renewcommand{\headrulewidth}{0.4pt} % customise the layout...
 \rhead{\footnotesize BIOL 567 syllabus page \thepage/\pageref{LastPage}}
 \renewcommand\footrulewidth{0pt}
-\usepackage[pdftitle={BIOL 567 syllabus},pdfauthor={Scott Sherrill-Mix},colorlinks=true,urlcolor=black]{hyperref} 
+\usepackage[pdftitle={BIOL 567 syllabus},pdfauthor={Scott Sherrill-Mix},colorlinks=true,urlcolor=black,linkcolor=black]{hyperref} 
 \title{BIOL 567}
 \date{Fall 2017}
 \author{Scott Sherrill-Mix}
@@ -17,17 +18,15 @@
 %\maketitle
 \thispagestyle{plain}
 \begin{center}
-\Large{\textbf{BIOL 567\\ Introduction to biological data analysis}}\\
+\Large{\textbf{BIOL 567\\ Biological data analysis}}\\
 \Large{\textbf{Fall 2017}}
 \end{center}
-\bigskip
 
 \noindent
 \textbf{Instructor:} Scott Sherrill-Mix\\
-\textbf{Location:} 123 Someplace\\
-\textbf{Time:} Wed 1-3pm\\
-\textbf{Website:} \url{http://somewhere.edu/BIOL657/}\\
-\bigskip
+\textbf{Course location:} 123 Someplace\\
+\textbf{Course time:} Wed 1-3pm\\
+\textbf{Course website:} \url{http://somewhere.edu/BIOL657/}\\
 
 \noindent
 \textbf{Office:} 345 Somewhere\\
@@ -36,86 +35,75 @@
 \textbf{Phone:} (234) 567-7890
 
 \section*{Course description}
-Some more text and a lot more. The Department of Computational Medicine and Bioinformatics (DCMB) invites applications from outstanding candidates for a junior level research track faculty position. This is an exciting opportunity to jumpstart your career with high impact research projects and the potential to advance to an independent principal investigator at the University of Michigan. The position will involve integrative analyses of data from various high-throughput molecular approaches (epigenomics, regulomics, transcriptomics, and genomics) with a focus on projects related to cancer and environmental health, and will be supervised by Dr. Maureen Sartor. 
+This course aims to prepare students for data analysis in biological research. The primary objective is to enable students to incorporate bioinformatic, statistical and scripting tools into their research. The course is intended for students with little familiarity with programming but a desire to learn. A basic knowledge of cell biology is suggested. Class time will be split between lectures, demonstrations and in-class exercises. I think hands on application is the best way to learn these topics so there will be weekly assignments outside class intended to take 1-3 hours to complete and a final project. 
+
+\section*{Equipment}
+Each student will need a laptop (with internet connection and the ability to install free open-source software) for in class activities. Please try to avoid websites/media that is not class related while in the classroom. 
+
+\section*{Book}
+No textbook is required for this course. Reading assignments will be detailed in the weekly homeworks and sources of additional information will be given at the end of each lecture.
 
 \section*{Objectives}
+The goal of the course is for students to achieve a comfortable familiarity with:
 \begin{itemize}
-	\item Batch process large datasets
-	\item Common databases
+	\item Command line and text editors
 	\item Source control
-	\item Reproducible research
+	\item Scripting and batch processing
+	\item Reproducible analysis and plotting 
+	\item Common bioinformatic algorithms and databases
 \end{itemize}
+I hope this will enable students to use these techniques in their own research and continue learning after leaving the class.
 
 \section*{Grading}
+\subsection*{Weekly assignments (40\%)}
+There will be weekly assignments in applied data analysis. Some components of these may be used during in-class activities.
+\subsection*{Final project (40\%)}
+A final research project with written documentation and code (30\%) along with an in class presentation (10\%).
+\subsection*{Final exam (10\%)}
+This will be a short exam similar to a programming test one might encounter at a job interview.
+\subsection*{Class participation (10\%)}
+Participation entails class attendance, participation during in-class activities and mutual respect for other students and teachers.
 
+\subsection*{Late grading}
+Assignments are due at midnight on the due date. Late assignments with be accepted up to one week after the due date with a 30\% grade deduction. Each student will get one free late assignment. Final project write-ups will be accepted up to 3 days late with a cumulative 10\% deduction per day.
 
-\newcommand{\nextitem}{\par\hspace*{\labelsep}\textbullet\hspace*{\labelsep}}
+\subsection*{Plagiarism policy}
+Students are allowed to work together and discuss assignments but each student is responsible that they independently complete the assignments and completely understand what is turned in. Direct reuse of another person's code in not acceptable in the weekly assignments. The point of the assignments is the journey not the destination. In the final project, code can be reused with correct licensing and documentation (\emph{all included code written by anyone other than the student must be explicitly documented even if not required by the software license}).
+
 \section*{Schedule}
-\begin{table}[h!]
-\normalsize
-\begin{tabular}{ | c | p{.8\textwidth} | }
+\newcounter{rownumbers}
+\newcommand\rownumber{\stepcounter{rownumbers}\arabic{rownumbers}}
+\newcounter{assnumbers}
+\newcommand\assnumber{\stepcounter{assnumbers}\arabic{assnumbers}}
+\begin{longtable}{|c|p{4in}|p{1.5in}|}
 \hline
-\textbf{Week} & \textbf{Content} \\
+Week & Topics & Assignments due\\
 \hline
-Week 1 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Introduction to ssh and command line\newline Introduction to text editors\newline Getting help & ---\\
 \hline
-Week 2 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Bash scripting \newline Introduction to python\newline Programming basics (variables, data types)  & Assignment \assnumber\\
 \hline
-Week 3 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Creating functions \newline Benefits of .txt \newline Source control & Assignment \assnumber\\
 \hline
-Week 4 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Introduction to R\newline Plotting& Assignment \assnumber\\
 \hline
-Week 5 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Flow control and logic \newline Command line tools & Assignment \assnumber\\
 \hline
-Week 6 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Data structures overview \newline Lists and dictionaries & Assignment \assnumber\\
 \hline
-Week 7 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Best practices \newline Reuseable code \newline Reproducible research & Final project description\\
 \hline
-Week 8 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Python modules\newline scipy, multiprocessing, subprocess, biopython& Assignment \assnumber\\ 
 \hline
-Week 9 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & String algorithms \newline Levenshtein distance& Assignment \assnumber\\
 \hline
-Week 10 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & BLAST\newline Bio databases& Assignment \assnumber\\
 \hline
-Week 11 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Statistics in R& Assignment \assnumber\\
 \hline
-Week 12 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Final test& ---\\
 \hline
-Week 13 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
+\rownumber & Student presentations& Final report due\\
 \hline
-Week 14 &
-	\nextitem Something interesting
-	\nextitem Reading assignment: Something interesting \\
-\hline
-\end{tabular} 
-\end{table}
-
-\section*{Course policies}
-
+\end{longtable}
 \end{document}
