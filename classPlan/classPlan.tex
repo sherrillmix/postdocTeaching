@@ -11,6 +11,7 @@
 \renewcommand\footrulewidth{0pt}
 \usepackage[pdftitle={BIOL 567 syllabus},pdfauthor={Scott Sherrill-Mix},colorlinks=true,urlcolor=black,linkcolor=black]{hyperref} 
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{.5em}
 \title{BIOL 567 class plan}
 \date{}
 \author{Scott Sherrill-Mix}
@@ -21,14 +22,90 @@
 \begin{center}
 	\Large{\textbf{Introduction to command line}}
 \end{center}
+\section*{Readings}
+\begin{itemize}
+\item Assignment 1: \underline{\textbf{Please bring a laptop to class on March 23.}}
 
-\section{Objectives}
+
+\item Assignment 2: We're going to visit a website that creates a virtual Linux computer in your browser. Think of it as your own computer server sandbox to practice on. Feel free to mess around in it.\\ \emph{Note:} Keyboard input is required so please use a desktop, laptop or tablet with attached physical keyboard. 
+
+To get started, visit:\\
+\url{http://bellard.org/jslinux/}\\
+and wait for a bunch of text to scroll by. Then look for text at the bottom saying:
+\vspace{-1em}
+\begin{verbatim}
+   Welcome to JS/Linux
+   /var/root #
+\end{verbatim} \vspace{-1em}
+Type \texttt{whoami} and hit Enter. You should see:
+\vspace{-1em}
+\begin{verbatim}
+   /var/root # whoami
+   root
+   /var/root #
+\end{verbatim}
+\vspace{-1em}
+If you do not see this, please email me \href{mailto:shescott@upenn.edu}{(shescott@upenn.edu)} a screenshot. If you see this, then assignment \#2 complete. We will use this emulator in class and if you are motivated you can test things out from the readings.
+
+\item Assignment 3: Please read these two pages:\\
+  \hphantom{aaa}\url{http://linuxcommand.org/lc3_lts0010.php}\\
+  \hphantom{aaa}\url{http://linuxcommand.org/lc3_lts0020.php}\\
+  If you'd like, you can use the Linux emulator from Assignment 2 to follow along.
+\end{itemize}
 
 
-\section{Plan}
-\url{http://www.askvg.com/pc-emulator-test-and-learn-linux-commands-in-web-browser/}
+\section*{Objectives}
+\begin{itemize}
+\item Introduce benefits of command line
+\item Introduce directory structure, listing and movement
+%\item Introduce linux emulator
+\item Hands-on practice with command line
+\item Give students the resources to continue learning independently
+\end{itemize}
+These skills are essential to the goals of the class. Additional assignments and lectures will build on these basic understandings of command line. Outside class, moving to command line allows students to document, version, automate and reproduce analyses of their research.
 
-\section{Foundation}
+\section*{Plan}
+\begin{center}
+\begin{tabular}{|c|c|l|}
+\hline
+Start (minutes) &End (minutes)& Topic\\
+\hline
+0&2 & Introduction\\
+2&4 & What is command line and benefits\\
+4&6 & Directories\\
+6&8 & \texttt{ls}\\
+8&10 & \texttt{cd}\\
+10&17 & Hands-on activity in groups\\
+17&20 & Wrap up\\
+\hline
+\end{tabular}
+\end{center}
 
-\section{Evaluations}
+\section{Teaching philosphy}
+A combination of readings, instruction with live demo and hands-on practice will give students a first introduction to command line. Given the time requirements, this will only be a shallow glance at the subject but I hope it will at allow them a first taste and provide the tools for further learning.
+
+This meets several points of my teaching philosophy:
+\begin{itemize}
+\item Providing tools to enable more efficient and robust analysis of data
+\item Demystifying bioinformatics/computation
+\item Hands-on application of concepts
+\end{itemize}
+
+\section*{Potential problems and workarounds}
+\begin{description}
+  \item[Distracted by computers:]{Mention focusing on task and avoiding distractions. Walk around observing screens during hands-on.}
+  \item[Computer difficulties/no computer:]{Grouped activity reduces chance of complete failure. If necessary, regroup to allow at least one working computer per group}
+  \item[Complete connection/website failure:]{Instructor does activity with input solicited from students.}
+  \item[Failure to read in advance:]{Not really required if they pay attention}
+  \item[Difficulty in understanding:]{Grouped activity allow student-student teaching. Walk around during hands-on. Follow up in office hours.}
+  \item[Low motivation:]{Ask each group the solution to a random part of the hands-on exercise.}
+  \item[Incorrect/incomplete solution]{Prompt for description of the attempt and reinforce journey over destination.}
+  \item[Difficulties with material/retention:]{I will hand out a command cheat sheet before class, walk around during the activity and follow up in office hours.}
+\end{description}
+
+
+\section*{Evaluation}
+I will observe students during the activity and ask for solutions after the activity to gauge student learning. I will also solicit questions and feedback. A follow-up homework assignment would allow individual measurement for each student.
+
+
 \end{document}
