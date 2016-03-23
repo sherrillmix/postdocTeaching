@@ -1,0 +1,65 @@
+\documentclass[xcolor=table]{beamer}
+%\usepackage{beamerthemeSingapore}
+%\usepackage{beamerthemeSingapore}
+\usetheme{Singapore2}
+\definecolor{themeColor}{RGB}{25,103,170}
+\usecolortheme[named=themeColor]{structure}
+\usepackage{microtype}
+\usepackage{xspace}
+\usepackage{grffile} %fix silly extension problems in graphics
+%%%
+\setbeamertemplate{navigation symbols}{} 
+
+
+
+%http://tex.stackexchange.com/questions/65583/grey-not-black-shadow-box
+
+\usepackage{tikz} 
+\usetikzlibrary{shadows.blur}
+\tikzset{
+	every overlay node/.style={
+		anchor=north west,
+	},
+}
+% Usage:
+% \tikzoverlay at (-1cm,-5cm) {content};
+% or
+% \tikzoverlay[text width=5cm] at (-1cm,-5cm) {content};
+\def\tikzoverlay{%
+	\tikz[baseline,overlay]\node[every overlay node]
+}%
+
+
+%http://tex.stackexchange.com/questions/40561/table-with-multiple-lines-in-some-cells
+\newcommand{\thead}[2][.75in]{%
+	\vbox{\hsize#1\baselineskip11pt\centering\vspace*{3pt}#2\par}}
+	\arrayrulecolor{darkBorderColor}
+	\rowcolors{1}{row1}{row2}
+
+\colorlet{borderColor}{cyan!30!white!90!black!70}
+\colorlet{darkBorderColor}{cyan!30!white!70!black!90}
+\colorlet{headerColor}{cyan!20!white!90!black!70}
+\colorlet{row1}{cyan!20!white!90!black!30}
+\colorlet{row2}{cyan!20!white!50!black!30}
+
+\colorlet{ShadowColor}{borderColor}
+\colorlet{ShadowColor2}{darkBorderColor}
+
+\title{\LARGE Introduction to command line}%\\\vspace{-.075in} analyzed by RNA-Seq\vspace{-.3in}}
+\author{\vspace{-.2in}Scott Sherrill-Mix\vspace{-.4in}}
+\date{\today\vspace{-.5in}}
+\begin{document}
+{
+\frame[plain]{\vspace{-.3in}\titlepage}
+}
+
+\section{Intro}
+\section{Command line}
+\section{Directories}
+\section{ls}
+\section{cd}
+\section{mkdir}
+
+
+%\framedgraphic{Experimental setup}{im/pacBio/Methods_2.png}
+\end{document}

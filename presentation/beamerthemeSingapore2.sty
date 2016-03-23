@@ -1,0 +1,151 @@
+\RequirePackage{tikz}
+\usetikzlibrary{fadings}
+
+\usepackage{array}
+\usepackage{ragged2e}
+\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+
+\DeclareOptionBeamer{compress}{\beamer@compresstrue}
+\ProcessOptionsBeamer
+
+\tikzfading[name=fade bottom, top color=transparent!0, bottom color=transparent!100]
+
+\mode<presentation>
+
+\setbeamercolor{section in head/foot}{use=structure,bg=structure.fg!25!bg}
+
+\useoutertheme[subsection=false]{miniframes}
+
+\setbeamertemplate{frametitle}[default][center]
+\setbeamertemplate{headline}{}
+
+\AtBeginDocument{%
+
+ \newcommand\shading{\tikz\fill[path fading= fade bottom, structure.fg!10!bg] (0cm,0cm) rectangle
+ (\paperwidth,.8cm);}
+
+  \setbeamercolor{section in head/foot}{bg=}
+}
+
+\addtoheadtemplate{\shading\vskip-.8cm}{}
+\addtobeamertemplate{frametitle}{\vspace*{-.275\baselineskip}}{}
+
+\setbeamersize{text margin left=.2cm,text margin right=.2cm} 
+
+%\setbeamertemplate{background canvas}{%
+ %\includegraphics[width=\paperwidth,height=\paperheight]{lighthouse.jpg}}
+
+\makeatletter                                                                                                                                                                    
+\renewcommand\@makefnmark{}
+\makeatother   
+
+\makeatletter
+\newcommand\Cshadowbox{\VerbBox\@Cshadowbox}
+\def\@Cshadowbox#1{%
+  \setbox\@fancybox\hbox{{\color{ShadowColor2}\fbox{\color{black}#1}}}%
+  \leavevmode\vbox{%
+    \offinterlineskip
+    \dimen@=\shadowsize
+    \advance\dimen@ .5\fboxrule
+    \hbox{\copy\@fancybox\kern.5\fboxrule\lower\shadowsize\hbox{%
+      \color{ShadowColor}\vrule \@height\ht\@fancybox \@depth\dp\@fancybox \@width\dimen@}}%
+    \vskip\dimexpr-\dimen@+0.5\fboxrule\relax
+    \moveright\shadowsize\vbox{%
+      \color{ShadowColor}\hrule \@width\wd\@fancybox \@height\dimen@}}
+}
+\makeatother
+
+
+\newcommand{\fillSlideGraphic}[1]{
+	\begin{center}
+		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{#1}
+	\end{center}
+}
+
+\newcommand {\framedgraphic}[2] {
+	\setbeamertemplate{background canvas}{%
+		\calculatespace%
+			\begin{pgfpicture}
+		\pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\paperheight}}
+		\ifbeamercolorempty[bg]{background canvas}{}{\color{bg}\pgfusepath{fill}}
+		\pgftext[at=\pgfpoint{\contentleft+0.5\contentwidth}{\contentbottom+0.5\contentheight}]{\includegraphics[width=.99\contentwidth,height=.96\contentheight,keepaspectratio]{#2}}
+		\end{pgfpicture}%
+	}
+	\begin{frame}{#1}
+	\end{frame}
+	\setbeamertemplate{background canvas}{%
+	}
+}
+
+\newcommand{\annotatedPlot}[3]{
+	\begin{frame}
+		\frametitle{#1}
+			\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (thisImage) at (0,0){\includegraphics[width=1\textwidth]{#2}};
+			\begin{scope}[x={(thisImage.south east)},y={(thisImage.north west)}]
+				#3
+			\end{scope}
+			\end{tikzpicture}
+	\end{frame} 
+}
+
+\newcommand {\titlePage}[1] {
+	\begin{frame}
+		\begin{center}	
+			\includegraphics[width=.6\textwidth]{#1}
+		\end{center}
+	\end{frame}
+}
+
+\newcommand{\questionPageFont}{\Large}
+
+\newif\ifsidebartheme
+\sidebarthemefalse
+
+\newdimen\contentheight
+\newdimen\contentwidth
+\newdimen\contentleft
+\newdimen\contentbottom
+\makeatletter
+\newcommand*{\calculatespace}{%
+\contentheight=\paperheight%
+\ifx\beamer@frametitle\@empty%
+    \setbox\@tempboxa=\box\voidb@x%
+  \else%
+    \setbox\@tempboxa=\vbox{%
+      \vbox{}%
+      {\parskip0pt\usebeamertemplate***{frametitle}}%
+    }%
+    \ifsidebartheme%
+      \advance\contentheight by-1em%
+    \fi%
+  \fi%
+\advance\contentheight by-\ht\@tempboxa%
+\advance\contentheight by-\dp\@tempboxa%
+\advance\contentheight by-\beamer@frametopskip%
+\ifbeamer@plainframe%
+\contentbottom=0pt%
+\else%
+\advance\contentheight by-\headheight%
+\advance\contentheight by\headdp%
+\advance\contentheight by-\footheight%
+\advance\contentheight by4pt%
+\contentbottom=\footheight%
+\advance\contentbottom by-4pt%
+\fi%
+\contentwidth=\paperwidth%
+\ifbeamer@plainframe%
+\contentleft=0pt%
+\else%
+\advance\contentwidth by-\beamer@rightsidebar%
+\advance\contentwidth by-\beamer@leftsidebar\relax%
+\contentleft=\beamer@leftsidebar%
+\fi%
+}
+\makeatother
+
+
+\beamertemplatedotitem
+
+\mode
+<all>
