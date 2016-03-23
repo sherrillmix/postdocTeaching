@@ -1,7 +1,19 @@
 
 \documentclass[12pt]{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=.9in]{geometry}
 \usepackage{microtype}
+\usepackage{verbatim} %define custom verbatim
+\setlength{\parindent}{0pt}
+\usepackage{textcomp} %tilde 
+\usepackage{url}
+
+\usepackage{etoolbox}
+\makeatletter
+\preto{\@verbatim}{\topsep=1pt \partopsep=0pt }
+\makeatother
+\newenvironment{cmd}{\verbatim}{\endverbatim\vspace{3pt}}
+
+
 
 \begin{document}
 %\maketitle
@@ -9,22 +21,108 @@
 \Large{\textbf{Command line activity}}\\
 \end{center}
 
+This is intended to be a very quick guided tour to get acquainted with the command line. We'll spend a few minutes in class and see how far people get. The goal is to experience interacting with a command line interface. If you find some aspect particularly interesting, feel free to branch off and investigate it as long as you can give a quick summary during the class discussion after the activity. Please use \url{http://bellard.org/jslinux/} to complete the activities.
+
+
 \section{The basics}
 \subsection{Go to your home directory}
-Type 
-\begin{verbatim}
-cd ~
-\end{verbatim}
-to go to your home directory. Type 
-\begin{verbatim}
-pwd
-\end{verbatim}
-to display the path to your home directory. Note it here:
-\vspace{.2in}
+To go to your home directory type:
+\begin{cmd}
+  cd ~
+\end{cmd}
+Type:
+\begin{cmd}
+  pwd
+\end{cmd}
+to display the path to your home directory. %Note it here:
+%\vspace{.3in}\\
+
+Let's see what is in our home directory, type:
+\begin{cmd}
+  ls
+\end{cmd}
+There should be two files.  Let's create a new directory called \texttt{thessi} by typing:
+\begin{cmd}
+  mkdir thessi
+\end{cmd}
+To see if it was created, type:
+\begin{cmd}
+  ls
+\end{cmd}
+
+Oops we actually wanted to create a file names \texttt{thesis}. Let's press the \texttt{Up} key a couple times to pull up our old command from our history, correct it and create the correct \texttt{thesis} file.
+
+\section{Getting help}
+Now if we run \texttt{ls} we can see our \texttt{thesis} directory and the incorrect \texttt{thessi}. We would like to get rid of \texttt{thessi} but we don't know the command for deleting a directory. Can you find the correct command on google?
+\vspace{.4in}
+
+Maybe a search query like ``delete a directory linux''? Try out the solution and see if it deletes.
+
+\vspace{.4in}
+
+Did you find something about \texttt{rmdir} or maybe \texttt{rm -r}? There are often multiple ways to accomplish things in command line. Probably the easiest way to delete an empty directory is:
+\begin{cmd}
+  rmdir thessi
+\end{cmd}
+
+
+
+%Let's \texttt{cd} into the new directory (\texttt{cd thesis}) and create a new directories called \texttt{chapter1} and \texttt{chapter2}:
+%\begin{cmd}
+  %mkdir chapter1 chapter2
+%\end{cmd}
+
+
+%Let's go to the \texttt{/var} directory by typing:
+%\begin{cmd}
+%cd /var
+%\end{cmd}
+%and check that the command worked:
+%\begin{cmd}
+%pwd
+%\end{cmd}
 
 
 \section{Canceling things}
-To cancel a command, you can use \texttt{Ctrl+c} (hold the \texttt{control} key and press \texttt{c} key)
+To cancel a command, you can use \texttt{Ctrl+c} (hold the \texttt{control} key and press \texttt{c} key). Let's test this out. Change your working directory to \texttt{/dev} and look around. Can you do this by yourself?
+
+\vspace{.4in}
+The commands are:
+\begin{cmd}
+  cd /dev
+  ls
+\end{cmd}
+We're going to look at the \texttt{urandom} file. To look at a file you can use the \texttt{cat} command (short for concatenate). First, lets try out tab completion. Type:
+\begin{cmd}
+  cat ur
+\end{cmd}
+and hit the Tab key. It should autocomplete to \texttt{cat urandom}. When you hit Enter your screen will start filling up with random gibberish without stopping a la the green text in the movie Matrix. Once that gets old, you can hit Ctrl+c to cancel. \texttt{urandom} is actually a special file that continuously returns random information although here we were just using it to practice cancelling.
+
+\section{Just for fun: Compile your first program}
+If you reached this far during class, then you must have flew through things. Let's get a little more advanced just for fun.  \texttt{cd} back to your home directory and \texttt{ls} again to see the contents. There's a file called \texttt{hello.c}. Let's see what's in it using \texttt{cat} (remember you can hit Tab to autocomplete after typing \texttt{cat h}:
+\begin{cmd}
+  cat hello.c
+\end{cmd}
+This is a simple program written in the C programming language. We need to compile it into a program that we can run. To do this we can use the \texttt{tcc} command (short for tiny C compiler):
+\begin{cmd}
+  tcc hello.c -o hello
+\end{cmd}
+List the directory contents to see a new file called ``hello'' (the \texttt{-o hello} in the previous command tells the compiler what file to create). We can run this file by typing:
+\begin{cmd}
+  ./hello
+\end{cmd}
+You should see a greeting from the program.
+
+If you still have time, you can customize the C code by starting a text editor (like microsoft word but on the command line) called \texttt{vi}. \texttt{vi} is not the best text editor to introduce beginners to but we are limited on this Linux instance (again this is just for fun so no problem at all if things don't work). So to start editing the file type:
+\begin{cmd}
+  vi hello.c
+\end{cmd}
+You should see the contents of the \texttt{hello.c} file. Before pressing anything else, press the \texttt{i} key to get into editing mode. Now use the arrow keys to navigate to ``Hello World''. Delete \texttt{World} and replace it with your name (be careful not to delete the quotes). Hit the \texttt{Esc} key to exit editing mode. Type \texttt{:wq} and hit Return to save and quit. You can \texttt{cat hello.c} to see your edits. Compile \texttt{hello.c} as before and run it. You should see a customized greeting.
+
+
+
+
+
 
 
 \end{document}

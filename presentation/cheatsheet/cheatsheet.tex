@@ -1,6 +1,17 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{microtype}
+\usepackage{textcomp} %tilde
+\usepackage{array} %M in tabulars
+\usepackage{verbatim} %define custom verbatim
+\setlength{\parindent}{0pt}
+
+
+\usepackage{etoolbox}
+\makeatletter
+\preto{\@verbatim}{\topsep=1pt \partopsep=0pt }
+\makeatother
+\newenvironment{cmd}{\verbatim}{\endverbatim\vspace{5pt}}
 
 \begin{document}
 %\maketitle
@@ -8,22 +19,126 @@
 \Large{\textbf{Linux cheatsheet}}\\
 \end{center}
 
-\section{Directories (folders)}
+\section*{Linux basics}
+\begin{description}
+\item[Directory/folder] A location for holding files. Keeps files organized. This is like viewing a folder in Windows or Mac file explorer.
+\item[Current/working directory] The directory in which a user is currently working 
+\item[Files] A computer file containing information
+\item[File names] Files are often named with an extension to show their file type (e.g. a music file might be \texttt{mozart.mp3} and a picture might be \texttt{family.jpg}). Case matters for names e.g. \texttt{L.jpg} is different than \texttt{l.jpg}. \\\emph{Avoiding spaces in names will save a lot of downstream trouble. }
+\item[Programs/commands/executables] These are several synonyms for files which are intended to be ran or executed by the computer. These files are not data but instead are commands for the computer either in binary or text. For example, think of Microsoft Word or a computer game. An example of a command is \texttt{ls} or \texttt{mkdir}.
+\item[Options/arguments] These are modifiers to a command. They are usually specified by \texttt{-} followed by a letter or a filename. For example, \texttt{ls -l} or \texttt{ls thesis}.
+\end{description}
 
-\subsection{mkdir: make a directory}
-To make a directory use 
-\texttt{mkdir directoryName}
+\subsection*{Directory shortcuts}
+{\def\arraystretch{1.7}
+\begin{tabular}{|c|m{5.5in}|}
+\hline
+\Large \texttt{.} &The current ``working'' directory (often unnecessary to specify this). It is often unnecessary to specify this since it is assumed by default.\\
+\hline
+\Large \texttt{..} &The parent directory of the current directory e.g. if you are in \texttt{/var/root} then \texttt{..} is \texttt{/var}. This is like ``Up'' in Windows file explorer.\\
+\hline
+\Large \texttt{\texttildelow} &Your home directory (different for each user). On this system, this is \texttt{/var/root}. This is like the ``My Documents'' directory in Windows or ``Home'' on Macs.\\
+\hline
+%\Large \texttt{/} &The root directory. The very base of the filesystem.  Something like the ``Computer'' directory in Windows.\\
+%\hline
+\Large \texttt{-} &The last directory. Use as a shortcut to go back to the previous directory you were in.  Like the back button in browsers or file explorers but limited to one back.\\
+\hline
+\end{tabular}
+}
 
-\subsection{pwd: make a directory}
-To make a directory use 
+\pagebreak[4]
+\subsection*{Handy shortcuts}
+\begin{description}
+\item[Tab completion]
+When typing, you can press the \texttt{Tab} key to have the computer automatically fill in the rest of a command or file. For example, typing:\\
+\texttt{ls hel}\\
+then hitting Tab will autocomplete to \texttt{ls hello.c} if there is a file called \texttt{hello.c} in the current directory. 
+ 
+If there are multiple files that could complete, then nothing will happen but pressing \texttt{Tab} twice will display the list of possible completions. For example, you can type:\\
+\texttt{l}\\
+then hit Tab twice to see a list of commands that start with \texttt{l}. You can then continue typing until you reach a point where what you have typed is unique and hit \texttt{Tab} to complete.
+\item[History]
+The command line stores a history of what you have entered. You can press the \texttt{Up} and \texttt{Down} keys to scroll through your history. For example, if you make a typo:\\
+\texttt{mkdir thessi}\\
+you can press \texttt{Up} and correct the misspelling without retyping the whole command.\
+\item[Cancel] If a command runs too long you can cancel it by holding the \texttt{Control} key and pressing the \texttt{c} key. Note that most commands will execute quickly so you will likely not have time to cancel them.
 
-\subsection{Special directories}
-\begin{definition}
-\item[\texttt{.}] The current ``working'' directory (often unnecessary to specify this). This is like opening a folder in Windows or Mac.
-\item[\texttt{..}] The parent directory of the current directory e.g. if you are in \texttt{/var/root} then \texttt{..} is \texttt{/var}. This is like ``Up'' in Windows file explorer.
-\item[\texttt{~}] Your home directory (different for each user). On this system, this is \texttt{/var/root}. This is like the ``My Documents'' directory in Windows or ``Home'' on Macs.
-\item[\texttt{/}] The root directory. The very base of the filesystem.  Something like the ``Computer'' directory in Windows.
-\end{definition}
+\end{description}
+
+
+\section*{Listing contents}
+\subsection*{\texttt{ls}: list files}
+To list the contents of your current directory type:
+\begin{cmd}
+  ls
+\end{cmd}
+To list the contents of a directory named \texttt{thesis} type:
+\begin{cmd}
+  ls thesis
+\end{cmd}
+To list all files in the current directory ending in \texttt{.txt} type:
+\begin{cmd}
+  ls *.txt
+\end{cmd}
+There are several useful arguments to \texttt{ls} (note that lower or UPPER case matters): 
+
+{\def\arraystretch{1.7}
+\begin{tabular}{|c|m{5.5in}|}
+\hline
+\large \texttt{-l} & Show the contents as a detailed \underline{l}ist instead of just file names\\
+\hline
+\large \texttt{-a} & Show \underline{a}ll files in the directory. By default files starting with \texttt{.} are not shown by \texttt{ls}.\\
+\hline
+\large \texttt{-S} & \underline{S}ize sort the files. Combines well with \texttt{-l}. Useful to find big files in a directory.\\
+\hline
+\large \texttt{-t} & Sort the files by the \underline{t}ime of last modification. Combines well with \texttt{-l}. Useful to find a file you (or a program or  a collaborator) recently modified in a directory.\\
+\hline
+\large \texttt{-h} & Show file sizes in \underline{h}uman readable format (e.g. 1G instead of 1000000000 or 10K instead of 10000). Really only useful with \texttt{-l}.\\
+\hline
+\end{tabular}
+}
+
+
+
+
+\section*{Directories (folders)}
+
+\subsection*{\texttt{pwd}: print working directory}
+To find out what directory you are currently working in type:
+\begin{cmd}
+  pwd
+\end{cmd}
+
+\subsection*{\texttt{mkdir}: make a directory}
+To make a directory named \texttt{directoryName} type:
+\begin{cmd}
+  mkdir directoryName
+\end{cmd}
+To make a directory named \texttt{thesis} type:
+\begin{cmd}
+  mkdir thesis
+\end{cmd}
+
+\subsection*{\texttt{rmdir}: remove a directory}
+To remove a directory named \texttt{thesis} type:
+\begin{cmd}
+  rmdir thesis
+\end{cmd}
+Note that the directory must be empty otherwise rmdir will not remove the directory.
+
+\section*{Getting help}
+\subsection*{\texttt{man}: getting the manual}
+To get help on a command within the command line you can type \texttt{man commandName}. For example, to get help on \texttt{ls} you can type:
+\begin{cmd}
+  man ls
+\end{cmd}
+Unfortunately, this help is often designed for people who already have a pretty good idea of what they are doing and may be less helpful for a novice.
+
+\subsection*{Google}
+Programmers like to talk about programming and are usually internet savvy so there are often lots of helpful webpages if you can figure out the right search terms. For example, a google search of ``creating a directory in linux'' turns up many examples of \texttt{mkdir}. Adding ``tutorial'' to a search will often pull up even more detailed explanations. Adding ``linux'' is often necessary to filter out other operating systems and synonyms.
+
+
+
 
 
 \end{document}
