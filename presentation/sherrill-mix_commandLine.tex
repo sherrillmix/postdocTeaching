@@ -9,6 +9,8 @@
 \usepackage{grffile} %fix silly extension problems in graphics
 %%%
 \setbeamertemplate{navigation symbols}{} 
+\usepackage{textcomp} %tilde
+\usepackage{array} %M in tabulars
 
 
 
@@ -92,8 +94,46 @@
 \end{columns}
 \end{frame}
 
+\begin{frame}{Benefits of command line}
+\begin{center}
+\Huge Example
+\end{center}
+\end{frame}
+
+\begin{frame}{Making it easier}
+\begin{center}
+\begin{tabular}{rl}
+\Large Tab completion & Press \texttt{Tab} once to autocomplete. \\
+&Press \texttt{Tab} twice to list potential completions.\\
+\Large History & Press \texttt{Up} or \texttt{Down} to view/edit previous commands.\\
+\Large man & Type \texttt{man XXX} to get help on command XXX.\\
+\Large google & Lots of webpages. Add ``linux'' and/or ''tutorial''\\
+\end{tabular}
+\end{center}
+\end{frame}
+
+
 \section{Directories}
 \framedgraphic{Directories}{im/directories.jpg}
+\begin{frame}{Directory shortcuts}
+\begin{center}
+{\def\arraystretch{1.7}
+\begin{tabular}{|c|c|}
+\hline
+\Large \texttt{.} &The current ``working'' directory\\
+\hline
+\Large \texttt{..} &The parent directory of the current directory\\
+\hline
+\Large \texttt{\texttildelow} &Your home directory (different for each user)\\
+\hline
+%\Large \texttt{/} &The root directory. The very base of the filesystem.  Something like the ``Computer'' directory in Windows.\\
+%\hline
+\Large \texttt{-} &The last directory\\
+\hline
+\end{tabular}
+}
+\end{center}
+\end{frame}
 %picture of directories
 \section{ls}
 \begin{frame}
