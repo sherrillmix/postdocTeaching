@@ -21,7 +21,7 @@
 \Large{\textbf{Command line activity}}\\
 \end{center}
 
-This is intended to be a very quick guided tour to get acquainted with the command line. We'll spend a few minutes in class and see how far people get. The goal is to experience interacting with a command line interface. If you find some aspect particularly interesting, feel free to branch off and investigate it as long as you can give a quick summary during the class discussion after the activity. Please use \url{http://bellard.org/jslinux/} to complete the activities.
+This is intended to be a very quick guided tour to get acquainted with the command line. We'll spend a few minutes in class and see how far people get. The goal is to experience interacting with a command line interface. If you find some aspect particularly interesting, feel free to branch off and investigate it as long as you can give a quick summary during the class discussion after the activity. Please use \underline{\url{http://bellard.org/jslinux/}} to complete the activities.
 
 
 \section{The basics}
@@ -60,7 +60,7 @@ Maybe a search query like ``delete a directory linux''? Try out the solution and
 
 \vspace{.4in}
 
-Did you find something about \texttt{rmdir} or maybe \texttt{rm -r}? There are often multiple ways to accomplish things in command line. Probably the easiest way to delete an empty directory is:
+Did you find something about \texttt{rmdir} or maybe \texttt{rm -r} (careful with \texttt{rm -r} in the future, it's easy to permanently delete a lot of things at once)? There are often multiple ways to accomplish things in command line. Probably the easiest way to delete an empty directory is:
 \begin{cmd}
   rmdir thessi
 \end{cmd}
@@ -98,6 +98,68 @@ We're going to look at the \texttt{urandom} file. To look at a file you can use 
 \end{cmd}
 and hit the Tab key. It should autocomplete to \texttt{cat urandom}. When you hit Enter your screen will start filling up with random gibberish without stopping a la the green text in the movie Matrix. Once that gets old, you can hit Ctrl+c to cancel. \texttt{urandom} is actually a special file that continuously returns random information although here we were just using it to practice cancelling.
 
+\section{Bioinformatics: Finding things in DNA}
+
+As an example of why command line could be useful lets look at a biological example. There is a handy \texttt{grep} command that can be used to look for strings like DNA motifs or genes. We'll need a fake DNA string so let's create one.
+First let's make sure we're in our home directory by typing \texttt{cd}. Then to create a fake DNA string, type something like (enter any random DNA sequence instead of directly copying):
+\begin{cmd}
+  echo ACACATATGATAGATATATGTGGAST > gene
+\end{cmd}
+We'll get into the details of how this works in another class but it should have created a file named \texttt{gene}. Type \texttt{ls} to make sure it was created. We might want to find how many As are in this DNA. To do this we can use the \texttt{grep} command with \texttt{-o} argument like \texttt{grep -o PATTERN FILE}. So that'll be:
+\begin{cmd}
+  grep -o A gene
+\end{cmd}
+Try looking for a few other DNA motifs. Remember you can press \texttt{Up} to edit your previous command.
+
+
+
+\section{Advanced: For loops}
+This is getting a bit more advanced but gives an example of how command line can make life easier. Often we want the computer to do something many times, e.g. look for DNA matches in 20 gene files or rename 100 analysis files. In programming, one way to deal with this is a for loop. We tell the computer for each of these items, do something. In bash you can create a for loop with something like:
+\begin{cmd}
+  for temp in MULTIPLE THINGS TO OPERATE ON;do 
+    ACTION ${temp}
+  done
+\end{cmd}
+Here I used all CAPS for places custom information will go. For example, to run blast on 3 files you could do something like:
+\begin{cmd}
+  for temp in file1 file2 file3;do
+    blast ${temp}
+  done
+\end{cmd}
+
+Let's try a for loop. As a simple example, let's try saying hello to a bunch of people. Linux has a command \texttt{echo} which makes the computer print whatever comes after \texttt{echo}. For example:
+\begin{cmd}
+  echo Hello XXX
+\end{cmd}
+will print ``Hello XXX''.
+
+Let's say we have to say hello to Jim, John, Bob, Mary and Pat. Can you follow the pattern above to greet each person by name?
+
+\vspace{.8in}
+
+You could do something like:
+\begin{cmd}
+  for temp in Jim John Bob Mary Pat;do
+    echo Hello, ${temp}!
+  done
+\end{cmd}
+
+You should get an output like:
+\begin{cmd}
+Hello, Jim!
+Hello, John!
+Hello, Bob!
+Hello, Mary!
+Hello, Pat!
+\end{cmd}
+
+Try saying ``Goodbye'' instead of ``Hello''. Remember you can use the \texttt{Up} arrow to edit your previous commands. Now we want to create a directory for each person. Try replacing the \texttt{echo} command to make 5 directories with each directory named for one of the people. 
+
+This same for loop pattern with a little editing could be used to run bowtie, blast or any other program.
+
+
+
+
 \section{Just for fun: Compile your first program}
 If you reached this far during class, then you must have flew through things. Let's get a little more advanced just for fun.  \texttt{cd} back to your home directory and \texttt{ls} again to see the contents. There's a file called \texttt{hello.c}. Let's see what's in it using \texttt{cat} (remember you can hit Tab to autocomplete after typing \texttt{cat h}:
 \begin{cmd}
@@ -117,8 +179,10 @@ If you still have time, you can customize the C code by starting a text editor (
 \begin{cmd}
   vi hello.c
 \end{cmd}
-You should see the contents of the \texttt{hello.c} file. Before pressing anything else, press the \texttt{i} key to get into editing mode. Now use the arrow keys to navigate to ``Hello World''. Delete \texttt{World} and replace it with your name (be careful not to delete the quotes). Hit the \texttt{Esc} key to exit editing mode. Type \texttt{:wq} and hit Return to save and quit. You can \texttt{cat hello.c} to see your edits. Compile \texttt{hello.c} as before and run it. You should see a customized greeting.
+You should see the contents of the \texttt{hello.c} file. Before pressing anything else, press the \texttt{i} key to get into editing mode. Now use the arrow keys to navigate to ``Hello World''. Delete \texttt{World} and replace it with your name (be careful not to delete the quotes). Hit the \texttt{Esc} key to exit editing mode. Type \texttt{:wq} and hit Return to save and quit. You can \texttt{cat hello.c} to see your edits. Compile \texttt{hello.c} as before and run it. You should see your customized greeting.
+\vspace{1em}
 
+If you got that done already, try to make a for loop to repeat the greeting 20 times. Check google for a tutorial on for loops in C and try to implement it. When you start \texttt{vi}, hit \texttt{i} immediately and when done editing again hit \texttt{Esc} and type \texttt{:wq} to save.
 
 
 
